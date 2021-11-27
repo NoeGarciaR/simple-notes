@@ -35,7 +35,7 @@
 
 ::placeholder { color: white; }
 
-input:focus, select:focus, select, input.form-control:focus, textarea:focus {
+input:focus, select:focus, select, input.form-control:focus, textarea:focus, textarea.form-control:focus {
   outline:none !important;
   outline-width: 0 !important;
   box-shadow: none;

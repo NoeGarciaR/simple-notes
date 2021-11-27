@@ -64,7 +64,7 @@ export class NoteFormComponent implements OnInit {
    */
   createForm(): void {
     this.form = this.fb.group({
-      title   : ['', Validators.required],
+      title   : ['', [Validators.required]],
       content : ['', Validators.required],
     });
     /**
@@ -84,10 +84,22 @@ export class NoteFormComponent implements OnInit {
    * @param { void }
    * @returns { void }
    * @description Emits the object built with the data
+   * if form is invalid then mark touch controls { inputs }
+   * else emit object build
    */
   save(): void {
-    // console.log(this.form.valid);
-    console.log(this.constructObject());
+    console.log(this.form);
+    if (this.form.invalid) {
+      return Object.values( this.form.controls ).forEach(control => {
+        if (control instanceof FormGroup) {
+          Object.values( control.controls ).forEach( con => con.markAsTouched());
+        } else {
+          control.markAsTouched();
+        }
+      });
+    } else {
+      console.log(this.constructObject());
+    }
   }
   /**
    * @method constructObject
@@ -103,6 +115,26 @@ export class NoteFormComponent implements OnInit {
     _response['date'] = this.date.getTime();
     _response['color'] = this.color;
     return _response as NoteInterface;
+  }
+  /**
+   * @get
+   * @method titleInvalid
+   * @param { void }
+   * @returns { boolean }
+   * @description Validate if input title is touched and valid
+   */
+  get titleInvalid(): boolean | undefined {
+    return this.form.get('title')?.invalid && this.form.get('title')?.touched;
+  }
+  /**
+   * @get
+   * @method contentInvalid
+   * @param { void }
+   * @returns { boolean }
+   * @description Validate if input content is touched and valid
+   */
+  get contentInvalid(): boolean | undefined{
+    return this.form.get('content')?.invalid && this.form.get('content')?.touched;
   }
 
 }

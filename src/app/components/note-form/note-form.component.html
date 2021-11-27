@@ -5,19 +5,23 @@
         <div class="card-body">
           <div class="form-group">
             <input type="text" 
-                  class="form-control title-input" 
+                  class="form-control title-input"
+                  [class.is-invalid] = "titleInvalid" 
                   id="input-title" 
                   formControlName="title"
                   placeholder="Title" 
                   [ngStyle]="{ 'background-color': color }">
+            <small class="text-danger" *ngIf="titleInvalid">Title invalid</small>
           </div>
           <div class="form-group">
             <textarea class="form-control" 
+                      [class.is-invalid] = "contentInvalid"
                       id="input-content"
                       formControlName="content"
                       rows="6" 
                       placeholder="Content.." 
                       [ngStyle]="{ 'background-color': color }"></textarea>
+            <small class="text-danger" *ngIf="contentInvalid">Content Note invalid</small>
           </div>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
