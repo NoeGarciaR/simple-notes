@@ -15,7 +15,13 @@ export class AppComponent {
    * @description name of page
    */
   title = 'SimpleNotes';
-
+  /**
+   * @memberof AppComponent
+   * @type array { NavigationInterface }
+   * @name nav
+   * @access public
+   * @description defined items for navbar { ticle and routes }
+   */
   nav: NavigationInterface[] = [
     {
       name    : 'Inicio',
@@ -23,11 +29,24 @@ export class AppComponent {
     },
     {
       name    : 'Agregar',
-      router  : '/add',
+      router  : '/note-form',
     },
     {
       name    : 'Archivo',
       router  : '/archive',
     }
+  ]
+  /**
+   * @memberof AppComponent
+   * @type array { string }
+   * @name colors
+   * @access public
+   * @description Defined the colors acepted in item cards
+   */
+  colors: string[] = [
+    "#80ADD",
+    "#0ABDA0",
+    "#D4DCA9",
+    "BF9D7A"
   ]
 }

@@ -15,8 +15,8 @@ import { NavbarModule } from './shared/navbar/navbar.module';
 /**
  * Components Modules
  */
-import { AddModule } from './components/add/add.module';
 import { ArchiveModule } from './components/archive/archive.module';
+import { NoteFormModule } from './components/note-form/note-form.module';
 
 @NgModule({
   declarations: [
@@ -28,8 +28,8 @@ import { ArchiveModule } from './components/archive/archive.module';
     /** Shared Modules */
     NavbarModule,
     /** Components Modules */
-    AddModule,
     ArchiveModule,
+    NoteFormModule,
     /** BoostrapModules */
     NgbModule
   ],

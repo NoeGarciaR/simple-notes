@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 /**
  * Components
  */
-import { AddComponent } from './components/add/add.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { NoteFormComponent } from './components/note-form/note-form.component';
 
 const routes: Routes = [
-  { path:'add', component: AddComponent },
+  { path:'note-form', component: NoteFormComponent },
   { path:'archive', component: ArchiveComponent }
 ];
 
