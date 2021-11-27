@@ -44,9 +44,9 @@ export class AppComponent {
    * @description Defined the colors acepted in item cards
    */
   colors: string[] = [
-    "#80ADD",
+    "#80ADD0",
     "#0ABDA0",
     "#D4DCA9",
-    "BF9D7A"
+    "#BF9D7A"
   ]
 }

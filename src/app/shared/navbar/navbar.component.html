@@ -11,4 +11,17 @@
       </li>
     </ul>
   </div>
+
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><fa-icon [icon]="iconAdd"></fa-icon></button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="add-item" ngbDropdownItem *ngFor="let color of colors" [ngStyle]="{'color': color}">
+            <fa-icon [icon]="faSticky"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>

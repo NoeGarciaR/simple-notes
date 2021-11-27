@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
  */
 import { NavbarComponent } from './navbar.component';
 import { RouterModule } from '@angular/router';
+import {  NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -17,7 +19,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgbDropdownModule,
+    FontAwesomeModule
   ]
 })
 export class NavbarModule { }
