@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { CustomValidatorsService } from 'src/app/core/services/custom-validators.service';
 import { NoteInterface } from 'src/app/shared/interfaces/note';
 
 @Component({
@@ -43,10 +44,12 @@ export class NoteFormComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   /**
    * @method constructor
-   * @param fb { FormBuilder }
+   * @param fb { FormBuilder }, customValidators { CustomValidatorsService }
    * @returns { void }
    */
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder,
+               private customValidators: CustomValidatorsService
+     ) { }
   /**
    * @method ngOnInit
    * @param { void }
@@ -64,8 +67,8 @@ export class NoteFormComponent implements OnInit {
    */
   createForm(): void {
     this.form = this.fb.group({
-      title   : ['', [Validators.required]],
-      content : ['', Validators.required],
+      title   : ['', [Validators.required, Validators.minLength(3), this.customValidators.notEmail]],
+      content : ['', [Validators.required, Validators.minLength(5)]],
     });
     /**
      * @type { Observable }
@@ -74,8 +77,8 @@ export class NoteFormComponent implements OnInit {
      */
     this.form.valueChanges.subscribe( item => {
       this.form.patchValue({
-        title: item.title.toUpperCase(),
-        content: item.content.toUpperCase(),
+        title: item.title.toUpperCase().trimStart(),
+        content: item.content.toUpperCase().trimStart(),
       }, { emitEvent: false });
     })
   }
@@ -88,7 +91,6 @@ export class NoteFormComponent implements OnInit {
    * else emit object build
    */
   save(): void {
-    console.log(this.form);
     if (this.form.invalid) {
       return Object.values( this.form.controls ).forEach(control => {
         if (control instanceof FormGroup) {

@@ -12,6 +12,10 @@ import { NoteFormComponent } from './note-form.component';
  * External Modules
  */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+/**
+ * Services
+ */
+import { CustomValidatorsService } from 'src/app/core/services/custom-validators.service';
 
 
 
@@ -27,6 +31,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule
+  ],
+  providers:[
+    CustomValidatorsService
   ]
 })
 export class NoteFormModule { }
