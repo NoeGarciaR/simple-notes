@@ -1,17 +1,36 @@
 .form-group {
- margin-bottom: 1px; 
- .title-input {
-  font-weight: bold;
-  font-size: 25px;
- }
- .form-control {
-  color: white;
-  border: none;
-}
+  margin-bottom: 1px; 
+  .title-input {
+    font-weight: bold;
+    font-size: 25px;
+  }  
+  .form-control {
+    color: white;
+    border: none;
+  }
 }
 
 .card {
   border-radius: 2rem;
+  .card-header:first-child {
+    border-radius: 2rem 2rem 0px 0px;
+  }
+  .card-footer:last-child {
+
+    color: white;
+    border-radius: 0px 0px 2rem 2rem;
+    .bt-icon {
+      background-color: white;
+      border-radius: 2rem;
+      
+    }
+    .bt-icon:hover {
+      background-color: black;
+      color: white;
+      transition: 200ms;
+      font-size: 18px;
+    }
+  }
 }
 
 ::placeholder { color: white; }

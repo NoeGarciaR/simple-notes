@@ -8,6 +8,10 @@ import { FormsModule } from '@angular/forms';
  * Declared Component
  */
 import { NoteFormComponent } from './note-form.component';
+/**
+ * External Modules
+ */
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -20,7 +24,8 @@ import { NoteFormComponent } from './note-form.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ]
 })
 export class NoteFormModule { }

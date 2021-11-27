@@ -17,6 +17,7 @@ import { NavbarModule } from './shared/navbar/navbar.module';
  */
 import { ArchiveModule } from './components/archive/archive.module';
 import { NoteFormModule } from './components/note-form/note-form.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NoteFormModule } from './components/note-form/note-form.module';
     ArchiveModule,
     NoteFormModule,
     /** BoostrapModules */
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
