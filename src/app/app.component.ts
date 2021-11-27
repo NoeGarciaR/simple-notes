@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavigationInterface } from './shared/interfaces/navigation';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,11 +24,11 @@ export class AppComponent {
   nav: NavigationInterface[] = [
     {
       name    : 'Inicio',
-      router  : '/home',
+      router  : 'pages/home',
     },
     {
       name    : 'Archivo',
-      router  : '/archive',
+      router  : 'pages/archive',
     }
   ]
   /**

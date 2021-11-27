@@ -9,33 +9,40 @@ export interface NoteInterface {
    * @property id
    * @type string or number
    */
-  id     ?: string | number;
+  id        ?: string | number;
   /**
    * @memberof NoteInterface
    * @property title
    * @type string
    * @required
    */
-  title   :  string;
+  title      :  string;
   /**
    * @memberof NoteInterface
    * @property date
    * @type numer or Date
    * @required
    */
-  date    : number | Date;
+  date       : number | Date;
   /**
    * @memberof NoteInterface
    * @property date
    * @type numer or Date
    * @required
    */
-  content : string;
+  content    : string;
   /**
    * @memberof NoteInterface
    * @property color
    * @type color hexadecimal of note
+   * @required
+   */
+  color      : string;
+  /**
+   * @memberof NoteInterface
+   * @property archive
+   * @type defined if this note's archived
    * @optional
    */
-   color ?: string;
+  archived  ?: boolean;
 }

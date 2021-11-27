@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 /**
  * Components
  */
-import { ArchiveComponent } from './components/archive/archive.component';
-import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path:'home', component: HomeComponent },
-  { path:'archive', component: ArchiveComponent },
-  { path:'**', redirectTo: 'home' }
+  { path:'pages', loadChildren: 	
+    () => import('./pages/pages.module').then(m => m.PagesModule) 
+  },
+  { path:'**', redirectTo: 'pages' }
 ];
 
 @NgModule({

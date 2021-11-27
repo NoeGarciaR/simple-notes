@@ -1,22 +1,34 @@
+/**
+ * Angualar Modules
+ */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+/**
+ * Internal Modules and Defined component
+ */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 /**
  * Import ngBoostrap
  */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /**
+ * Firebase
+ */
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+/**
+ * Enviroment
+ */
+import { environment } from 'src/environments/environment';
+/**
  * Shared Modules
  */
 import { NavbarModule } from './shared/navbar/navbar.module';
 /**
- * Components Modules
+ * Pages Modules
  */
-import { ArchiveModule } from './components/archive/archive.module';
-import { HomeModule } from './components/home/home.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -24,14 +36,17 @@ import { HomeModule } from './components/home/home.module';
   ],
   imports: [
     BrowserModule,
+    /** Router Main */
     AppRoutingModule,
     /** Shared Modules */
     NavbarModule,
-    /** Components Modules */
-    ArchiveModule,
-    HomeModule,
+    /** Pages Module */
+    PagesModule,
     /** BoostrapModules */
-    NgbModule
+    NgbModule,
+    /** Firebase Modules */
+    provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]
