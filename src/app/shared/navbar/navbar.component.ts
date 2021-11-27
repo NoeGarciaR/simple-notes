@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faPlusCircle, faStickyNote } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddItemModalComponent } from 'src/app/components/add-item-modal/add-item-modal.component';
 import { NavigationInterface } from '../interfaces/navigation';
 
 @Component({
@@ -35,15 +37,29 @@ export class NavbarComponent implements OnInit {
    * @access public
    */
   @Input() colors: string[] = [];
-
+  /**
+   * @memberof NavbarComponent
+   * @param colors
+   * @default []
+   * @name colors
+   * @type string { array }
+   * @access public
+   */
   iconAdd = faPlusCircle;
   faSticky = faStickyNote;
 
-  constructor() { 
+  public isCollapsed = true;
+
+  constructor(private modalService: NgbModal) { 
     
   }
 
   ngOnInit(): void {
+  }
+
+  open(color: string) {
+    const modalRef = this.modalService.open(AddItemModalComponent);
+    modalRef.componentInstance.color = color;
   }
 
 }

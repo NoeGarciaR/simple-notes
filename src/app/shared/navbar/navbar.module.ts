@@ -5,8 +5,9 @@ import { CommonModule } from '@angular/common';
  */
 import { NavbarComponent } from './navbar.component';
 import { RouterModule } from '@angular/router';
-import {  NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbCollapseModule, NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddItemModalModule } from 'src/app/components/add-item-modal/add-item-modal.module';
 
 
 
@@ -20,8 +21,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     RouterModule,
+    NgbModule,
     NgbDropdownModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AddItemModalModule,
+    NgbCollapseModule
   ]
 })
 export class NavbarModule { }

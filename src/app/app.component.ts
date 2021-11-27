@@ -28,10 +28,6 @@ export class AppComponent {
       router  : '/home',
     },
     {
-      name    : 'Agregar',
-      router  : '/note-form',
-    },
-    {
       name    : 'Archivo',
       router  : '/archive',
     }

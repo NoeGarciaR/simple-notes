@@ -1,10 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
-  <a class="navbar-brand" href="#">{{ title }}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" *ngFor="let item of itemsNavigate">
         <a class="nav-link" [routerLink]="[ item.router ]" routerLinkActive="router-link-active"  > {{ item.name }} <span class="sr-only">(current)</span></a>
@@ -12,12 +11,12 @@
     </ul>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="isCollapsed">
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><fa-icon [icon]="iconAdd"></fa-icon></button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="add-item" ngbDropdownItem *ngFor="let color of colors" [ngStyle]="{'color': color}">
+          <button (click)="open(color)" class="add-item" ngbDropdownItem *ngFor="let color of colors" [ngStyle]="{'color': color}">
             <fa-icon [icon]="faSticky"></fa-icon>
           </button>
         </div>

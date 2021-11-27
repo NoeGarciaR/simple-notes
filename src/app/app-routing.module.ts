@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
  * Components
  */
 import { ArchiveComponent } from './components/archive/archive.component';
-import { NoteFormComponent } from './components/note-form/note-form.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path:'note-form', component: NoteFormComponent },
+  { path:'**', redirectTo: 'home' },
+  { path:'home', component: HomeComponent },
   { path:'archive', component: ArchiveComponent }
 ];
 
