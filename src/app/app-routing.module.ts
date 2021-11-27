@@ -7,9 +7,9 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path:'**', redirectTo: 'home' },
   { path:'home', component: HomeComponent },
-  { path:'archive', component: ArchiveComponent }
+  { path:'archive', component: ArchiveComponent },
+  { path:'**', redirectTo: 'home' }
 ];
 
 @NgModule({
