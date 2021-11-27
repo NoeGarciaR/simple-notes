@@ -1,21 +1,31 @@
 <div class="row p-5">
   <div class="col">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="save()">
       <div class="card shadow" [ngStyle]="{ 'background-color': color }">
         <div class="card-body">
-            <div class="form-group">
-              <input type="email" class="form-control title-input" id="input-title" placeholder="Title" [ngStyle]="{ 'background-color': color }">
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" id="input-content" rows="6" placeholder="Content.." [ngStyle]="{ 'background-color': color }"></textarea>
-            </div>
+          <div class="form-group">
+            <input type="text" 
+                  class="form-control title-input" 
+                  id="input-title" 
+                  formControlName="title"
+                  placeholder="Title" 
+                  [ngStyle]="{ 'background-color': color }">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" 
+                      id="input-content"
+                      formControlName="content"
+                      rows="6" 
+                      placeholder="Content.." 
+                      [ngStyle]="{ 'background-color': color }"></textarea>
+          </div>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
           <div>
             {{date | date: 'dd'}}-{{date | date:'MM'}}-{{date | date: 'yyyy'}}
           </div>
           <div>
-            <button class="btn bt-icon">
+            <button type="submit" class="btn bt-icon">
               <fa-icon [icon]="saveIcon"></fa-icon>
             </button>
           </div>

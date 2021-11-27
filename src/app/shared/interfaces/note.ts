@@ -6,6 +6,12 @@
 export interface NoteInterface {
   /**
    * @memberof NoteInterface
+   * @property id
+   * @type string or number
+   */
+  id     ?: string | number;
+  /**
+   * @memberof NoteInterface
    * @property title
    * @type string
    * @required
@@ -25,4 +31,11 @@ export interface NoteInterface {
    * @required
    */
   content : string;
+  /**
+   * @memberof NoteInterface
+   * @property color
+   * @type color hexadecimal of note
+   * @optional
+   */
+   color ?: string;
 }
