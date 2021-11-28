@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { CustomValidatorsService } from 'src/app/core/services/custom-validators.service';
@@ -12,12 +12,31 @@ import { NoteInterface } from 'src/app/shared/interfaces/note';
 export class NoteFormComponent implements OnInit {
   /**
    * @memberof NoteFormComponent
+   * @name objectResponse
+   * @type Output() { EventEmitter<NoteInterface> }
+   * @default new EventEmitter<NoteInterface>
+   * @description Emit the object generate of type NoteInterface
+   */
+  @Output() objectResponse = new EventEmitter<NoteInterface>();
+  /**
+   * @memberof NoteFormComponent
    * @name color
    * @type Input() { string }
    * @default #0ABDA0
    * @description get color card
    */
   @Input() color:string = "#0ABDA0";
+  /**
+   * @memberof NoteFormComponent
+   * @name note
+   * @type Input() { NoteInterface }
+   * @default undefined
+   * @description
+   * Comunication in this component form, 
+   * It is used to preload the form
+   * and determine how the resulting object is constructed
+   */
+  @Input() note!: NoteInterface;
   /**
    * @memberof NoteFormComponent
    * @name date
@@ -100,7 +119,7 @@ export class NoteFormComponent implements OnInit {
         }
       });
     } else {
-      console.log(this.constructObject());
+      this.objectResponse.emit(this.constructObject());
     }
   }
   /**
@@ -116,6 +135,11 @@ export class NoteFormComponent implements OnInit {
     } );
     _response['date'] = this.date.getTime();
     _response['color'] = this.color;
+    (this.note === undefined) ?
+      _response['archived'] = false : () => {
+        _response['archived'] = this.note['archived'];
+        _response['id'] = this.note['id'];
+      }
     return _response as NoteInterface;
   }
   /**

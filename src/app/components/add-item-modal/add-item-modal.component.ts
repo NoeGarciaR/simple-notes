@@ -3,6 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
  * Boostrap Modal Service
  */
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+/**
+ * Note interface
+ */
+import { NoteInterface } from 'src/app/shared/interfaces/note';
 
 @Component({
   selector: 'app-add-item-modal',
@@ -15,6 +19,10 @@ export class AddItemModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+  }
+
+  createNote( $event: NoteInterface ) {
+    console.log( $event)
   }
 
 }

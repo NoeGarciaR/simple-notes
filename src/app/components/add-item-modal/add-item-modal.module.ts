@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
  * Internal Components Module
  */
 import { NoteFormModule } from '../note-form/note-form.module';
+import { NotesService } from 'src/app/core/services/notes.service';
 
 
 
@@ -26,6 +27,9 @@ import { NoteFormModule } from '../note-form/note-form.module';
     CommonModule,
     NgbModule,
     NoteFormModule
+  ],
+  providers: [
+    NotesService
   ]
 })
 export class AddItemModalModule { }
