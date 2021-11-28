@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
    * @description 
    * Update to Selected Note
    */
-  updateNote( $event: NoteInterface ) {
-    console.table($event);
+  updateNote( $event: NoteInterface ): void {
+    this.noteService.updateNote($event).subscribe( );
   }
 }

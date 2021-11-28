@@ -41,7 +41,6 @@ export class AppComponent {
   colors: string[] = [
     "#80ADD0",
     "#0ABDA0",
-    "#D4DCA9",
     "#BF9D7A"
   ]
 }

@@ -45,6 +45,28 @@ export class NotesService {
   }
   /**
    * @memberof NotesService
+   * @method updateNote
+   * @param note: { NoteInterface }
+   * @returns Observable { any }
+   * @description 
+   * Update Note to Firestore
+   * Return observable
+   */
+   updateNote(note: NoteInterface): Observable<any> {
+    let itemsCollection = this.afs.collection<NoteInterface>(environment.path_colection);
+    /** Clone object note */
+    let _note = {
+      ...note
+    }
+    /** Delete property id */
+    delete _note.id;
+    /** Update date of note */
+    _note.date = new Date().getTime();
+    // @ts-ignore
+    return from(itemsCollection.doc(note.id).update(_note));
+  }
+  /**
+   * @memberof NotesService
    * @method getActiveNotes
    * @param { void }
    * @returns Observable { NoteInterface[] }
@@ -54,6 +76,26 @@ export class NotesService {
   getActiveNotes(): Observable<NoteInterface[]> {
     return this.afs.collection<NoteInterface>(environment.path_colection
       ,res => res.where('archived', '==', false)
+      ).snapshotChanges().pipe(
+      map(actions => actions.map( note => {
+        const data = note.payload.doc.data() as NoteInterface;
+        const id = note.payload.doc.id;
+        return { id, ...data};
+      }
+      ))
+    )
+  }
+  /**
+   * @memberof NotesService
+   * @method getInactiveNotes
+   * @param { void }
+   * @returns Observable { NoteInterface[] }
+   * @description 
+   * Get notes are archived
+   */
+  getInactiveNotes(): Observable<NoteInterface[]> {
+    return this.afs.collection<NoteInterface>(environment.path_colection
+      ,res => res.where('archived', '==', true)
       ).snapshotChanges().pipe(
       map(actions => actions.map( note => {
         const data = note.payload.doc.data() as NoteInterface;

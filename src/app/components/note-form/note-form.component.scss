@@ -2,7 +2,7 @@
   margin-bottom: 1px; 
   .title-input {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 16px;
   }  
   .form-control {
     color: white;
@@ -10,19 +10,29 @@
   }
 }
 
+textarea {
+  font-size: 13px;
+  font-weight: 200;
+}
+
 .card {
   border-radius: 2rem;
   .card-header:first-child {
     border-radius: 2rem 2rem 0px 0px;
+    color: white;
+    font-size: 13px;
+  }
+  .card-body {
+    padding: 0;
   }
   .card-footer:last-child {
-
+    font-weight: 100;
+    font-size: 12px;
     color: white;
     border-radius: 0px 0px 2rem 2rem;
     .bt-icon {
       background-color: white;
       border-radius: 2rem;
-      
     }
     .bt-icon:hover {
       background-color: black;

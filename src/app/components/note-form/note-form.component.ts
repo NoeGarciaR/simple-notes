@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport, faFileImport, faSave } from '@fortawesome/free-solid-svg-icons';
 import { CustomValidatorsService } from 'src/app/core/services/custom-validators.service';
 import { NoteInterface } from 'src/app/shared/interfaces/note';
 
@@ -18,6 +18,24 @@ export class NoteFormComponent implements OnInit {
    * @description Emit the object generate of type NoteInterface
    */
   @Output() objectResponse = new EventEmitter<NoteInterface>();
+  /**
+   * @memberof NoteFormComponent
+   * @name archived
+   * @type Output() { EventEmitter<NoteInterface> }
+   * @default new EventEmitter<NoteInterface>
+   * @description Emit the object generate of type NoteInterface
+   * Use in case of click in button archive
+   */
+  @Output() archive = new EventEmitter<NoteInterface>();
+  /**
+   * @memberof NoteFormComponent
+   * @name archived
+   * @type Output() { EventEmitter<NoteInterface> }
+   * @default new EventEmitter<NoteInterface>
+   * @description Emit the object generate of type NoteInterface
+   * Use in case of click in button Unarchive
+   */
+   @Output() unarchive = new EventEmitter<NoteInterface>();
   /**
    * @memberof NoteFormComponent
    * @name color
@@ -53,6 +71,22 @@ export class NoteFormComponent implements OnInit {
    * @description get icon save
    */
   saveIcon = faSave;
+  /**
+   * @memberof NoteFormComponent
+   * @name upArchiveIcon
+   * @type { const }
+   * @default faFileImport
+   * @description get icon upArchiveIcon
+   */
+  upArchiveIcon = faFileImport;
+  /**
+   * @memberof NoteFormComponent
+   * @name downArchiveIcon
+   * @type { const }
+   * @default faFileExport
+   * @description get icon downArchiveIcon
+   */
+  downArchiveIcon = faFileExport;
   /**
    * @memberof NoteFormComponent
    * @name form
@@ -105,6 +139,7 @@ export class NoteFormComponent implements OnInit {
       }, { emitEvent: false });
     })
   }
+
   /**
    * @method save
    * @param { void }
@@ -112,20 +147,65 @@ export class NoteFormComponent implements OnInit {
    * @description Emits the object built with the data
    * if form is invalid then mark touch controls { inputs }
    * else emit object build
+   * @emits NoteInterface
    */
   save(): void {
+    if ( this.formValidate() ) {
+      this.objectResponse.emit(this.constructObject());
+    }
+  }
+  /**
+   * @method archived
+   * @param { void }
+   * @returns { void }
+   * @description Emits the object built with the data
+   * this method update archived in true
+   * @emits NoteInterface
+   */
+  archived(): void {
+    if ( this.formValidate() ) {
+      let objetc = this.constructObject();
+      objetc.archived = true;
+      this.archive.emit(objetc);
+    }
+  }
+  /**
+   * @method unArchived
+   * @param { void }
+   * @returns { void }
+   * @description Emits the object built with the data
+   * this method update archived in false
+   * @emits NoteInterface
+   */
+  unArchived(): void {
+    if ( this.formValidate() ) {
+      let objetc = this.constructObject();
+      objetc.archived = false;
+      this.unarchive.emit(objetc);
+    }
+  }
+  /**
+   * @method formValidate
+   * @param { void }
+   * @returns { void }
+   * @description 
+   * Mark touch items and return if this form's valid
+   */
+  formValidate(): boolean {
     if (this.form.invalid) {
-      return Object.values( this.form.controls ).forEach(control => {
+      Object.values( this.form.controls ).forEach(control => {
         if (control instanceof FormGroup) {
           Object.values( control.controls ).forEach( con => con.markAsTouched());
         } else {
           control.markAsTouched();
         }
       });
+      return false;
     } else {
-      this.objectResponse.emit(this.constructObject());
+      return true;
     }
   }
+
   /**
    * @method constructObject
    * @param { void }

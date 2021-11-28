@@ -1,1 +1,5 @@
-<p>archive works!</p>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col p-1 mt-1" *ngFor="let note of notes">
+    <app-note-form (unarchive)="updateNote($event)" [note]="note" (objectResponse)="updateNote($event)"></app-note-form>
+  </div>
+</div>

@@ -2,15 +2,23 @@
   <div class="col">
     <form [formGroup]="form" (ngSubmit)="save()">
       <div class="card shadow" [ngStyle]="{ 'background-color': color }">
+        <div class="card-header d-flex justify-content-end" *ngIf="note">
+          <button type="button" class="badge badge-dark" *ngIf="!note.archived" (click)="archived()">
+            Archive <fa-icon [icon]="upArchiveIcon"></fa-icon>
+          </button>
+          <button type="button" class="badge badge-dark" *ngIf="note.archived" (click)="unArchived()">
+            Unarchive <fa-icon [icon]="upArchiveIcon"></fa-icon>
+          </button>
+        </div>
         <div class="card-body">
           <div class="form-group">
             <input type="text" 
-                  class="form-control title-input"
+                  class="form-control"
                   [class.is-invalid] = "titleInvalid" 
                   id="input-title" 
                   formControlName="title"
                   placeholder="Title" 
-                  [ngStyle]="{ 'background-color': color }">
+                  [ngStyle]="{ 'background-color': color, 'border-radius': '2rem' }">
             <small class="text-danger" *ngIf="titleInvalid">Title invalid (It's email or It not have min 3 characteres)</small>
           </div>
           <div class="form-group">
@@ -26,8 +34,8 @@
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
           <div>
-            {{ date | date: 'short' }}
-            <!-- {{date | date: 'dd'}}-{{date | date:'MM'}}-{{date | date: 'yyyy'}} -->
+            <!-- {{ date | date: 'short' }} -->
+            {{date | date: 'dd'}}-{{date | date:'MM'}}-{{date | date: 'yyyy'}}
           </div>
           <div>
             <button type="submit" class="btn bt-icon">
