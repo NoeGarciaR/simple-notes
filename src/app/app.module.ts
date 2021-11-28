@@ -29,6 +29,8 @@ import { NavbarModule } from './shared/navbar/navbar.module';
  * Pages Modules
  */
 import { PagesModule } from './pages/pages.module';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,9 @@ import { PagesModule } from './pages/pages.module';
     /** BoostrapModules */
     NgbModule,
     /** Firebase Modules */
-    provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
-    provideFirestore(() => getFirestore()),
+    // provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
+    // provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

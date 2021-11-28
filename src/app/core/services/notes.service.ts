@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 /**
  * Firebase Modules and compat
  */
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { from, Observable } from 'rxjs';
 
 import { NoteInterface } from 'src/app/shared/interfaces/note';
 import { environment } from 'src/environments/environment';
@@ -15,8 +15,8 @@ export class NotesService {
   constructor( public afs: AngularFirestore) {
   }
 
-  addNote(note: NoteInterface) {
+  addNote(note: NoteInterface): Observable<any> {
     let itemsCollection = this.afs.collection<NoteInterface>(environment.path_colection);
-    itemsCollection.add(note).then( resp => console.log(resp) );
+    return from(itemsCollection.add(note));
   }
 }
