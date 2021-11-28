@@ -13,10 +13,9 @@ import { AppComponent } from './app.component';
  */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /**
- * Firebase
+ * Sweet Alert Modules
  */
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /**
  * Enviroment
  */
@@ -29,7 +28,6 @@ import { NavbarModule } from './shared/navbar/navbar.module';
  * Pages Modules
  */
 import { PagesModule } from './pages/pages.module';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
@@ -47,9 +45,9 @@ import { AngularFireModule } from '@angular/fire/compat';
     /** BoostrapModules */
     NgbModule,
     /** Firebase Modules */
-    // provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
-    // provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    /** SweetAlert2Module  */
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,6 +8,10 @@ import { NotesService } from 'src/app/core/services/notes.service';
  * Note interface
  */
 import { NoteInterface } from 'src/app/shared/interfaces/note';
+/**
+ * Const Swal Defined
+ */
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-item-modal',
@@ -46,8 +50,15 @@ export class AddItemModalComponent implements OnInit {
    * Create new Note in to FireStore
    */
   createNote( $event: NoteInterface ): void {
-    this.noteService.addNote($event).subscribe( response => {
+    this.noteService.addNote($event).subscribe( () => {
       this.activeModal.close();
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'The note has been created',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
   }
 
