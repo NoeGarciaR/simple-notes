@@ -9,45 +9,56 @@ import { NoteInterface } from 'src/app/shared/interfaces/note';
 })
 export class ArchiveComponent implements OnInit {
   /**
-   * @memberof HomeComponent
-   * @property notes
-   * @type NoteInterface { array }
-   * @default []
-   * @description save notes, response to NotesService
-   */ 
-   notes: NoteInterface[] = [];
-   /**
-    * @memberof HomeComponent
-    * @method constructor
-    * @param inyect noteService { NotesService }
-    * @returns { void }
-    * @description 
-    * Initialice this.notes and order response to NoteService
-    */
-   constructor( private noteService: NotesService ) { }
-   /**
-    * @memberof HomeComponent
-    * @method ngOnInit
-    * @param { void }
-    * @returns { void }
-    * @description 
-    * Initialice this.notes and order response to NoteService
-    */
-   ngOnInit(): void {
-     this.noteService.getInactiveNotes().subscribe( (notes: NoteInterface[]) => {
-       this.notes = notes.sort(this.noteService.oderByDate);
-     });
+  * @memberof ArchiveComponent
+  * @property notes
+  * @type NoteInterface { array }
+  * @default []
+  * @description save notes, response to NotesService
+  */ 
+  notes: NoteInterface[] = [];
+  /**  
+  * @memberof ArchiveComponent
+  * @method constructor
+  * @param inyect noteService { NotesService }
+  * @returns { void }
+  * @description 
+  * Initialice this.notes and order response to NoteService
+  */
+  constructor( private noteService: NotesService ) { }
+  /**
+  * @memberof ArchiveComponent
+  * @method ngOnInit
+  * @param { void }
+  * @returns { void }
+  * @description 
+  * Initialice this.notes and order response to NoteService
+  */
+  ngOnInit(): void {
+    this.noteService.getInactiveNotes().subscribe( (notes: NoteInterface[]) => {
+      this.notes = notes.sort(this.noteService.oderByDate);
+    });
    }
   /**
-    * @memberof HomeComponent
-    * @method updateNote
-    * @param { void }
-    * @returns { void }
-    * @description 
-    * Update to Selected Note
-    */
-   updateNote( $event: NoteInterface ): void {
-     this.noteService.updateNote($event).subscribe( );
-   }
+  * @memberof ArchiveComponent
+  * @method updateNote
+  * @param { void }
+  * @returns { void }
+  * @description 
+  * Update to Selected Note
+  */
+  updateNote( $event: NoteInterface ): void {
+    this.noteService.updateNote($event).subscribe( );
+  }
+  /**
+   * @memberof ArchiveComponent
+   * @method deteteNote
+   * @param { void }
+   * @returns { void }
+   * @description 
+   * Delete to Selected Note
+   */
+  deteteNote( $event: NoteInterface ): void {
+    this.noteService.deleteNote($event).subscribe( );
+  }
 
 }

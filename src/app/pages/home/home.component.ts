@@ -49,4 +49,15 @@ export class HomeComponent implements OnInit {
   updateNote( $event: NoteInterface ): void {
     this.noteService.updateNote($event).subscribe( );
   }
+  /**
+   * @memberof HomeComponent
+   * @method deteteNote
+   * @param { void }
+   * @returns { void }
+   * @description 
+   * Delete to Selected Note
+   */
+   deteteNote( $event: NoteInterface ): void {
+    this.noteService.deleteNote($event).subscribe( );
+  }
 }

@@ -1,5 +1,9 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="jumbotron">
+  <h1>Archive</h1>      
+  <p>Here you will see the notes you have on file.</p>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
   <div class="col p-1 mt-1" *ngFor="let note of notes">
-    <app-note-form (unarchive)="updateNote($event)" [note]="note" (objectResponse)="updateNote($event)"></app-note-form>
+    <app-note-form (unarchive)="updateNote($event)" (delete)="deteteNote($event)" (objectResponse)="updateNote($event)" [note]="note"></app-note-form>
   </div>
 </div>

@@ -23,11 +23,11 @@ export class AppComponent {
    */
   nav: NavigationInterface[] = [
     {
-      name    : 'Inicio',
+      name    : 'Home',
       router  : 'pages/home',
     },
     {
-      name    : 'Archivo',
+      name    : 'Archive',
       router  : 'pages/archive',
     }
   ]

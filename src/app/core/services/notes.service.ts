@@ -52,7 +52,7 @@ export class NotesService {
    * Update Note to Firestore
    * Return observable
    */
-   updateNote(note: NoteInterface): Observable<any> {
+  updateNote(note: NoteInterface): Observable<any> {
     let itemsCollection = this.afs.collection<NoteInterface>(environment.path_colection);
     /** Clone object note */
     let _note = {
@@ -64,6 +64,20 @@ export class NotesService {
     _note.date = new Date().getTime();
     // @ts-ignore
     return from(itemsCollection.doc(note.id).update(_note));
+  }
+  /**
+   * @memberof NotesService
+   * @method updateNote
+   * @param note: { NoteInterface }
+   * @returns Observable { any }
+   * @description 
+   * Update Note to Firestore
+   * Return observable
+   */
+  deleteNote(note: NoteInterface): Observable<any> {
+    let itemsCollection = this.afs.collection<NoteInterface>(environment.path_colection);
+    // @ts-ignore
+    return from(itemsCollection.doc(note.id).delete());
   }
   /**
    * @memberof NotesService

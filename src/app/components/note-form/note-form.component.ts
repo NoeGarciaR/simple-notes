@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faFileExport, faFileImport, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport, faFileImport, faSave, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { CustomValidatorsService } from 'src/app/core/services/custom-validators.service';
 import { NoteInterface } from 'src/app/shared/interfaces/note';
 
@@ -35,7 +35,16 @@ export class NoteFormComponent implements OnInit {
    * @description Emit the object generate of type NoteInterface
    * Use in case of click in button Unarchive
    */
-   @Output() unarchive = new EventEmitter<NoteInterface>();
+  @Output() unarchive = new EventEmitter<NoteInterface>();
+  /**
+   * @memberof NoteFormComponent
+   * @name delete
+   * @type Output() { EventEmitter<NoteInterface> }
+   * @default new EventEmitter<NoteInterface>
+   * @description Emit the object generate of type NoteInterface
+   * Use in case of click in button delete
+   */
+  @Output() delete = new EventEmitter<NoteInterface>();
   /**
    * @memberof NoteFormComponent
    * @name color
@@ -79,6 +88,14 @@ export class NoteFormComponent implements OnInit {
    * @description get icon upArchiveIcon
    */
   upArchiveIcon = faFileImport;
+  /**
+   * @memberof NoteFormComponent
+   * @name trashIcon
+   * @type { const }
+   * @default faTrashAlt
+   * @description get icon trashIcon
+   */
+  trashIcon = faTrashAlt;
   /**
    * @memberof NoteFormComponent
    * @name downArchiveIcon
@@ -183,6 +200,17 @@ export class NoteFormComponent implements OnInit {
       objetc.archived = false;
       this.unarchive.emit(objetc);
     }
+  }
+  /**
+   * @method unArchived
+   * @param { void }
+   * @returns { void }
+   * @description Emits the object built with the data
+   * this method update archived in false
+   * @emits NoteInterface
+   */
+  deleteNote(): void {
+    this.delete.emit(this.constructObject());
   }
   /**
    * @method formValidate

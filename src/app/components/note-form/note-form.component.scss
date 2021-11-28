@@ -20,7 +20,10 @@ textarea {
   .card-header:first-child {
     border-radius: 2rem 2rem 0px 0px;
     color: white;
-    font-size: 13px;
+    font-size: 15px;
+    .badge {
+      border: none;
+    }
   }
   .card-body {
     padding: 0;
