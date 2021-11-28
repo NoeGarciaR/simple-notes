@@ -26,7 +26,8 @@
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
           <div>
-            {{date | date: 'dd'}}-{{date | date:'MM'}}-{{date | date: 'yyyy'}}
+            {{ date | date: 'short' }}
+            <!-- {{date | date: 'dd'}}-{{date | date:'MM'}}-{{date | date: 'yyyy'}} -->
           </div>
           <div>
             <button type="submit" class="btn bt-icon">

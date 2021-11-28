@@ -1,1 +1,5 @@
-<p>home works!</p>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let note of notes">
+    <app-note-form [note]="note" (objectResponse)="updateNote($event)"></app-note-form>
+  </div>
+</div>

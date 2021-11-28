@@ -13,6 +13,10 @@ import { PagesRoutingModule } from './pages-routing.module';
  */
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
+/**
+ * Component Modules
+ */
+import { NoteFormModule } from '../components/note-form/note-form.module';
 
 
 
@@ -27,7 +31,9 @@ import { ArchiveComponent } from './archive/archive.component';
   imports: [
     CommonModule,
     /** Mai Pages Routin Module */
-    PagesRoutingModule
+    PagesRoutingModule,
+    /** Components Modules */
+    NoteFormModule
   ]
 })
 export class PagesModule { }

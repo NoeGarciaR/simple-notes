@@ -36,7 +36,7 @@ export class NoteFormComponent implements OnInit {
    * It is used to preload the form
    * and determine how the resulting object is constructed
    */
-  @Input() note!: NoteInterface;
+  @Input() note: NoteInterface | undefined;
   /**
    * @memberof NoteFormComponent
    * @name date
@@ -77,17 +77,21 @@ export class NoteFormComponent implements OnInit {
    */
   ngOnInit(): void {
     this.createForm();
+    if ( this.note !== undefined ) {
+      this.color = this.note.color;
+      this.date = new Date(this.note.date);
+    }
   }
   /**
    * @method createForm
    * @param { void }
    * @returns { void }
-   * @description create new form with formBuilder
+   * @description create new form with formBuilder and initialice if exist note
    */
   createForm(): void {
     this.form = this.fb.group({
-      title   : ['', [Validators.required, Validators.minLength(3), this.customValidators.notEmail]],
-      content : ['', [Validators.required, Validators.minLength(5)]],
+      title   : [ (this.note === undefined)? '' : this.note.title , [Validators.required, Validators.minLength(3), this.customValidators.notEmail]],
+      content : [ (this.note === undefined)? '' : this.note.content , [Validators.required, Validators.minLength(5)]],
     });
     /**
      * @type { Observable }
@@ -135,11 +139,12 @@ export class NoteFormComponent implements OnInit {
     } );
     _response['date'] = this.date.getTime();
     _response['color'] = this.color;
-    (this.note === undefined) ?
-      _response['archived'] = false : () => {
-        _response['archived'] = this.note['archived'];
-        _response['id'] = this.note['id'];
-      }
+    if ( this.note === undefined ) {
+      _response['archived'] = false;
+    } else {
+      _response['archived'] = this.note['archived'];
+      _response['id'] = this.note['id'];
+    }
     return _response as NoteInterface;
   }
   /**
